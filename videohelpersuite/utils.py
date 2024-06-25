@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import re
 
-import server
+# import server
 from .logger import logger
 
 BIGMIN = -(2**53-1)
