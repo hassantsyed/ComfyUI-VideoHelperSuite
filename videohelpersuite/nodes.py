@@ -18,7 +18,7 @@ from .image_latent_nodes import *
 from .load_video_nodes import LoadVideoUpload, LoadVideoPath
 from .load_images_nodes import LoadImagesFromDirectoryUpload, LoadImagesFromDirectoryPath
 from .batched_nodes import VAEEncodeBatched, VAEDecodeBatched
-from .utils import ffmpeg_path, get_audio, hash_path, validate_path, requeue_workflow, gifski_path, calculate_file_hash, strip_path
+from .utils import ffmpeg_path, get_audio, hash_path, validate_path, gifski_path, calculate_file_hash, strip_path
 from comfy.utils import ProgressBar
 
 folder_paths.folder_names_and_paths["VHS_video_formats"] = (
@@ -457,7 +457,8 @@ class VideoCombine:
                 pbar.update(1)
                 output_process.send(image)
             if meta_batch is not None:
-                requeue_workflow((meta_batch.unique_id, not meta_batch.has_closed_inputs))
+                print("REMOVED")
+                # requeue_workflow((meta_batch.unique_id, not meta_batch.has_closed_inputs))
             if meta_batch is None or meta_batch.has_closed_inputs:
                 #Close pipe and wait for termination.
                 try:
